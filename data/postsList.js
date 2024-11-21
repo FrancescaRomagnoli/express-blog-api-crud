@@ -9,8 +9,8 @@ const postArr = [
       "baking",
       "homestyle baking",
       "recipes",
-      "traditional recipes",
-      "regional recipes",
+      "traditional",
+      "regional",
     ],
   },
   {
@@ -23,8 +23,8 @@ const postArr = [
       "baking",
       "homestyle cooking",
       "recipes",
-      "snack recipes",
-      "healthy recipes",
+      "snack",
+      "healthy",
     ],
   },
   {
@@ -32,27 +32,14 @@ const postArr = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis dolor ac nulla interdum, in posuere libero malesuada.",
     image: "/img/pane_fritto_dolce.jpeg",
-    tags: [
-      "cooking",
-      "baking",
-      "homestyle baking",
-      "recipes",
-      "easy recipes",
-      "bread recipes",
-    ],
+    tags: ["cooking", "baking", "homestyle", "recipes", "easy", "bread"],
   },
   {
     title: "Pasta alla barbabietola",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis dolor ac nulla interdum, in posuere libero malesuada.",
     image: "/img/pasta_barbabietola.jpeg",
-    tags: [
-      "cooking",
-      "baking",
-      "homestyle baking",
-      "recipes",
-      "healthy recipes",
-    ],
+    tags: ["cooking", "baking", "homestyle", "recipes", "healthy "],
   },
   {
     title: "Torta paesana",
@@ -62,10 +49,10 @@ const postArr = [
     tags: [
       "cooking",
       "baking",
-      "homestyle baking",
+      "homestyle",
       "recipes",
-      "traditional recipes",
-      "regional recipes",
+      "traditional",
+      "regional",
     ],
   },
 ];

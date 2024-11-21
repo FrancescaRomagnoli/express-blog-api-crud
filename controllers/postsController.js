@@ -8,13 +8,29 @@ function index(req, res) {
     posts: postsList,
   };
 
-  res.json(responseObj);
+  const { title, tags } = req.query;
+
+  //   search filter
+  let filteredPosts = postsList;
+
+  if (tags) {
+    filteredPosts = filteredPosts.filter((post) => post.tags.includes(tags));
+  }
+
+  if (title) {
+    filteredPosts = filteredPosts.filter((post) =>
+      post.title.toLocaleLowerCase().includes(title.toLocaleLowerCase())
+    );
+  }
+
+  res.json(filteredPosts);
 }
 
 // # show
 function show(req, res) {
   const postId = parseInt(req.params.id);
 
+  // error
   if (postId >= postsList.length || postId < 0) {
     return res.status(404).json({ error: "not found" });
   }
@@ -49,11 +65,14 @@ function destroy(req, res) {
 
   postsList.splice(postId, 1);
 
+  // error
+  if (postId >= postsList.length || postId < 0) {
+    return res.status(404).json({ error: "not found" });
+  }
+
   res.status(204).json();
 
   return console.log(postsList);
-
-  //   res.send(`Deleted post ${postId}`);
 }
 
 module.exports = { index, show, store, update, modify, destroy };
