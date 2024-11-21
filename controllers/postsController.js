@@ -1,4 +1,4 @@
-const postsList = require("../data/post-list");
+const postsList = require("../data/postsList");
 
 // # index
 
@@ -7,6 +7,7 @@ function index(req, res) {
     count: postsList.length,
     posts: postsList,
   };
+
   res.json(responseObj);
 }
 
@@ -14,7 +15,11 @@ function index(req, res) {
 function show(req, res) {
   const postId = parseInt(req.params.id);
 
-  res.send(postsList[postId]);
+  if (postId >= postsList.length || postId < 0) {
+    return res.status(404).json({ error: "not found" });
+  }
+
+  res.json(postsList[postId]);
 }
 
 // # store
