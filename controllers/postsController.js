@@ -46,7 +46,14 @@ function modify(req, res) {
 
 function destroy(req, res) {
   const postId = parseInt(req.params.id);
-  res.send(`Deleted post ${postId}`);
+
+  postsList.splice(postId, 1);
+
+  res.status(204).json();
+
+  return console.log(postsList);
+
+  //   res.send(`Deleted post ${postId}`);
 }
 
 module.exports = { index, show, store, update, modify, destroy };
