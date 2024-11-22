@@ -85,6 +85,7 @@ function store(req, res) {
 function update(req, res) {
   const id = parseInt(req.params.id);
   const postId = postsList.find((post) => post.id === id);
+  const postIndex = postsList.indexOf(postId);
   const { title, description, image, tags } = req.body;
 
   // id error
@@ -124,7 +125,7 @@ function update(req, res) {
     tags,
   };
 
-  postsList.splice(postId, 1, updatedPost);
+  postsList.splice(postIndex, 1, updatedPost);
 
   res.json(updatedPost);
 }
