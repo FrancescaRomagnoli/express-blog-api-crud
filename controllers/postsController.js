@@ -6,7 +6,7 @@ function index(req, res) {
   const { title, tags } = req.query;
 
   //   search filter
-  let filteredPosts = postsList;
+  let filteredPosts = [...postsList];
 
   if (tags) {
     filteredPosts = filteredPosts.filter((post) => post.tags.includes(tags));
@@ -24,13 +24,14 @@ function index(req, res) {
 // # show
 function show(req, res) {
   const id = parseInt(req.params.id);
+  const post = postsList.find((post) => post.id === id);
 
   // error
-  if (id >= postsList.length || id < 0) {
+  if (!post) {
     return res.status(404).json({ error: "not found" });
   }
 
-  res.json(postsList[id]);
+  res.json(post);
 }
 
 // # store
@@ -55,8 +56,20 @@ function store(req, res) {
 // # update
 
 function update(req, res) {
-  const postId = parseInt(req.params.id);
-  res.send(`Update post ${postId}`);
+  const id = parseInt(req.params.id);
+  const post = postsList.find((post) => post.id === id);
+
+  // error
+  if (!post) {
+    return res.status(404).json({ error: "not found" });
+  }
+
+  post.title = req.body.title;
+  post.description = req.body.description;
+  post.image = req.body.image;
+  post.tags = req.body.tags;
+
+  res.json(post);
 }
 
 // # modify
@@ -69,14 +82,17 @@ function modify(req, res) {
 // # destroy
 
 function destroy(req, res) {
-  const postId = parseInt(req.params.id);
-
-  postsList.splice(postId, 1);
+  const id = parseInt(req.params.id);
+  const post = postsList.find((post) => post.id === id);
 
   // error
-  if (postId >= postsList.length || postId < 0) {
+  if (!post) {
     return res.status(404).json({ error: "not found" });
   }
+
+  const postId = postsList.indexOf(post);
+
+  postsList.splice(postId, 1);
 
   res.status(204).json();
 
