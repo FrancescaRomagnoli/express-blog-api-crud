@@ -39,12 +39,39 @@ function show(req, res) {
 function store(req, res) {
   const newId = postsList[postsList.length - 1].id + 1;
 
+  const { title, description, image, tags } = req.body;
+
+  // validation
+
+  if (!title || typeof title !== "string") {
+    return res
+      .status(400)
+      .json({ error: "Title is required and must be a string" });
+  }
+
+  if (!description || typeof description !== "string") {
+    return res
+      .status(400)
+      .json({ error: "Description is required and must be a string" });
+  }
+
+  if (!image) {
+    return res.status(400).json({ error: "Image is required" });
+  }
+
+  if (!tags?.length) {
+    return res
+      .status(400)
+      .json({ error: "Tags is required and must be an array" });
+  }
+
+  // new post
   const newPost = {
     id: newId,
-    title: req.body.title,
-    description: req.body.description,
-    image: req.body.image,
-    tags: req.body.tags,
+    title,
+    description,
+    image,
+    tags,
   };
 
   postsList.push(newPost);
@@ -57,19 +84,49 @@ function store(req, res) {
 
 function update(req, res) {
   const id = parseInt(req.params.id);
-  const post = postsList.find((post) => post.id === id);
+  const postId = postsList.find((post) => post.id === id);
+  const { title, description, image, tags } = req.body;
 
-  // error
-  if (!post) {
+  // id error
+  if (!postId) {
     return res.status(404).json({ error: "not found" });
   }
 
-  post.title = req.body.title;
-  post.description = req.body.description;
-  post.image = req.body.image;
-  post.tags = req.body.tags;
+  // validation
 
-  res.json(post);
+  if (!title || typeof title !== "string") {
+    return res
+      .status(400)
+      .json({ error: "Title is required and must be a string" });
+  }
+
+  if (!description || typeof description !== "string") {
+    return res
+      .status(400)
+      .json({ error: "Description is required and must be a string" });
+  }
+
+  if (!image) {
+    return res.status(400).json({ error: "Image is required" });
+  }
+
+  if (!tags?.length) {
+    return res
+      .status(400)
+      .json({ error: "Tags is required and must be an array" });
+  }
+
+  const updatedPost = {
+    id,
+    title,
+    description,
+    image,
+    tags,
+  };
+
+  postsList.splice(postId, 1, updatedPost);
+
+  res.json(updatedPost);
 }
 
 // # modify
