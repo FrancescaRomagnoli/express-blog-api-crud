@@ -1,5 +1,6 @@
 const postArr = [
   {
+    id: 1,
     title: "Ciambellone",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis dolor ac nulla interdum, in posuere libero malesuada.",
@@ -14,6 +15,7 @@ const postArr = [
     ],
   },
   {
+    id: 2,
     title: "Cracker alla barbabietola",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis dolor ac nulla interdum, in posuere libero malesuada.",
@@ -28,6 +30,7 @@ const postArr = [
     ],
   },
   {
+    id: 3,
     title: "Pane fritto dolce",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis dolor ac nulla interdum, in posuere libero malesuada.",
@@ -35,6 +38,7 @@ const postArr = [
     tags: ["cooking", "baking", "homestyle", "recipes", "easy", "bread"],
   },
   {
+    id: 4,
     title: "Pasta alla barbabietola",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis dolor ac nulla interdum, in posuere libero malesuada.",
@@ -42,6 +46,7 @@ const postArr = [
     tags: ["cooking", "baking", "homestyle", "recipes", "healthy "],
   },
   {
+    id: 5,
     title: "Torta paesana",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis dolor ac nulla interdum, in posuere libero malesuada.",

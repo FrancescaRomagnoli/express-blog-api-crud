@@ -3,11 +3,6 @@ const postsList = require("../data/postsList");
 // # index
 
 function index(req, res) {
-  const responseObj = {
-    count: postsList.length,
-    posts: postsList,
-  };
-
   const { title, tags } = req.query;
 
   //   search filter
@@ -28,20 +23,33 @@ function index(req, res) {
 
 // # show
 function show(req, res) {
-  const postId = parseInt(req.params.id);
+  const id = parseInt(req.params.id);
 
   // error
-  if (postId >= postsList.length || postId < 0) {
+  if (id >= postsList.length || id < 0) {
     return res.status(404).json({ error: "not found" });
   }
 
-  res.json(postsList[postId]);
+  res.json(postsList[id]);
 }
 
 // # store
 
 function store(req, res) {
-  res.send("Create a new post");
+  const newId = postsList[postsList.length - 1].id + 1;
+
+  const newPost = {
+    id: newId,
+    title: req.body.title,
+    description: req.body.description,
+    image: req.body.image,
+    tags: req.body.tags,
+  };
+
+  postsList.push(newPost);
+
+  console.log(newPost);
+  res.json(newPost);
 }
 
 // # update
