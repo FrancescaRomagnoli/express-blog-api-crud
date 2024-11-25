@@ -26,7 +26,7 @@ function show(req, res) {
   const id = parseInt(req.params.id);
   const post = postsList.find((post) => post.id === id);
 
-  // error
+  // error;
   if (!post) {
     return res.status(404).json({ error: "not found" });
   }

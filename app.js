@@ -2,10 +2,12 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+// # middlewares
+
+const errorsHandler = require("./middlewares/errorsHandler.js");
+const notFound = require("./middlewares/notFound.js");
+
 app.use(express.json());
-
-// # static assets
-
 app.use(express.static("public"));
 
 // # routers
@@ -23,6 +25,10 @@ app.get("/", (req, res) => {
 app.get("/bacheca", (req, res) => {
   res.send("dashboard");
 });
+
+// # errors handler
+app.use(errorsHandler);
+app.use(notFound);
 
 // # listen
 
